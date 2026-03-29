@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>慢性炎症自测</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont; padding:20px; background:#f7f7f7;}
+.container { max-width:600px; margin:auto; background:white; padding:20px; border-radius:12px;}
+h1 { font-size:22px; }
+.question { margin:15px 0; }
+button { width:100%; padding:12px; background:black; color:white; border:none; border-radius:8px; font-size:16px;}
+.result { margin-top:20px; padding:15px; border-radius:10px;}
+.low { background:#e6f7e6; }
+.mid { background:#fff7cc; }
+.high { background:#ffe6e6; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>慢性炎症自测（1分钟）</h1>
+
+<form id="quiz">
+
+<div class="question">
+1. 性别：
+<select><option value="0">男</option><option value="0">女</option></select>
+</div>
+
+<div class="question">
+2. 年龄：
+<select><option value="0"><25</option><option value="1">25-45</option><option value="2">>45</option></select>
+</div>
+
+<div class="question">
+3. 体重情况：
+<select><option value="0">正常</option><option value="1">偏重</option><option value="2">肥胖</option></select>
+</div>
+
+<div class="question">
+4. 血压：
+<select><option value="0">正常</option><option value="1">偶尔高</option><option value="2">长期高</option></select>
+</div>
+
+<div class="question">
+5. 睡眠：
+<select><option value="0">规律</option><option value="1">一般</option><option value="2">差</option></select>
+</div>
+
+<div class="question">
+6. 压力：
+<select><option value="0">低</option><option value="1">中</option><option value="2">高</option></select>
+</div>
+
+<div class="question">
+7. 运动：
+<select><option value="0">经常</option><option value="1">偶尔</option><option value="2">几乎不</option></select>
+</div>
+
+<div class="question">
+8. 疲劳感：
+<select><option value="0">无</option><option value="1">偶尔</option><option value="2">经常</option></select>
+</div>
+
+<div class="question">
+9. 精制碳水（白米饭/面条）比例：
+<select><option value="0">少</option><option value="1">一般</option><option value="2">多</option></select>
+</div>
+
+<div class="question">
+10. 外卖/加工食品：
+<select><option value="0">少</option><option value="1">一般</option><option value="2">多</option></select>
+</div>
+
+<div class="question">
+11. 糖摄入：
+<select><option value="0">少</option><option value="1">一般</option><option value="2">多</option></select>
+</div>
+
+<div class="question">
+12. 蔬菜摄入：
+<select><option value="0">多</option><option value="1">一般</option><option value="2">少</option></select>
+</div>
+
+<div class="question">
+13. 蛋白质摄入：
+<select><option value="0">足</option><option value="1">一般</option><option value="2">不足</option></select>
+</div>
+
+<div class="question">
+14. 皮肤问题：
+<select><option value="0">无</option><option value="1">偶尔</option><option value="2">反复</option></select>
+</div>
+
+<div class="question">
+15. 消化：
+<select><option value="0">正常</option><option value="1">偶尔不适</option><option value="2">经常不适</option></select>
+</div>
+
+<div class="question">
+16. 口腔问题：
+<select><option value="0">无</option><option value="1">偶尔</option><option value="2">经常</option></select>
+</div>
+
+<div class="question">
+17. 情绪：
+<select><option value="0">稳定</option><option value="1">一般</option><option value="2">波动大</option></select>
+</div>
+
+<div class="question">
+18. 体重变化：
+<select><option value="0">稳定</option><option value="1">略变</option><option value="2">易增重</option></select>
+</div>
+
+<div class="question">
+19. 慢性病：
+<select><option value="0">无</option><option value="2">有</option></select>
+</div>
+
+<div class="question">
+20. 长期用药：
+<select><option value="0">无</option><option value="2">有</option></select>
+</div>
+
+<button type="button" onclick="calc()">查看结果</button>
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+function calc(){
+let total = 0;
+document.querySelectorAll("select").forEach(s=>{
+total += parseInt(s.value);
+});
+
+let resultText = "";
+let cls = "";
+
+if(total <= 12){
+resultText = "🟢 低炎症状态：整体较稳定，继续保持良好习惯。";
+cls="low";
+}else if(total <= 25){
+resultText = "🟡 中度炎症状态：存在慢性炎症倾向，建议优化饮食与作息。";
+cls="mid";
+}else{
+resultText = "🔴 高炎症状态：炎症负担较高，建议系统调整生活方式。";
+cls="high";
+}
+
+document.getElementById("result").innerHTML =
+`<div class="result ${cls}">
+<h3>你的得分：${total}</h3>
+<p>${resultText}</p>
+<p>建议：减少精制碳水（白米饭/面条）、控制糖分、增加蛋白质与深海鱼、改善睡眠。</p>
+</div>`;
+}
+</script>
+
+</body>
+</html>
