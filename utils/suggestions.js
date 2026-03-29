@@ -70,6 +70,7 @@ function _buildPrinciples(scoreResult, dietScore, sleepScore, exerciseScore, str
       id: 'oral',
       icon: '🦷',
       title: '口腔健康原则',
+      // 口腔健康问题（溃疡sk1、牙龈出血sk2）归属皮肤与黏膜维度
       content: skinScore >= 50
         ? '口腔慢性炎症（牙周炎、溃疡）是全身炎症负担的重要来源。建议每6个月进行一次口腔检查和专业洁牙，每天使用牙线，减少精制糖摄入以改善口腔菌群环境。'
         : '保持每天早晚刷牙（至少2分钟）、使用牙线的好习惯。定期口腔检查可帮助早期发现牙周问题，避免慢性低度炎症积累。'

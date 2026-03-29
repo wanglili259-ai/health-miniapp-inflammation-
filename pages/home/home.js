@@ -32,7 +32,7 @@ Page({
   startAssessment() {
     // 检查是否有草稿
     const draft = wx.getStorageSync('draft_assessment')
-    if (draft && draft.step > 0) {
+    if (draft && draft.currentStep > 0) {
       wx.showModal({
         title: '发现未完成的测评',
         content: '是否继续上次未完成的测评？',

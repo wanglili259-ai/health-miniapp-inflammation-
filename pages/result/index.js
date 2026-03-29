@@ -131,6 +131,6 @@ Page({
   },
 
   goHome() {
-    wx.switchTab ? wx.reLaunch({ url: '/pages/home/home' }) : wx.navigateBack({ delta: 10 })
+    wx.reLaunch({ url: '/pages/home/home' })
   }
 })

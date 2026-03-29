@@ -44,7 +44,6 @@ Page({
 
   _saveDraft() {
     wx.setStorageSync('draft_assessment', {
-      step: this.data.currentStep,
       currentStep: this.data.currentStep,
       basicInfo: this.data.basicInfo,
       basicInfoMulti: this.data.basicInfoMulti,
