@@ -1,0 +1,114 @@
+<scroll-view class="container" scroll-y>
+  <view class="loading-wrap" wx:if="{{ loading }}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view wx:else>
+    <!-- 评分概览 -->
+    <view class="score-overview">
+      <text class="date-text">{{ dateStr }}</text>
+      <view class="score-row">
+        <text class="big-score" style="color: {{ levelColor }}">{{ totalScore }}</text>
+        <view class="score-right">
+          <view class="level-badge" style="background: {{ levelColor }}22; border-color: {{ levelColor }}44">
+            <text style="color: {{ levelColor }}">{{ levelText }}</text>
+          </view>
+          <text class="score-label">慢性炎症风险指数</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 基础信息 -->
+    <view class="section">
+      <text class="section-title">📋 基础信息</text>
+      <view class="info-grid" wx:if="{{ basicInfo }}">
+        <view class="info-item" wx:if="{{ basicInfo.gender }}">
+          <text class="info-label">性别</text>
+          <text class="info-value">{{ basicInfo.gender }}</text>
+        </view>
+        <view class="info-item" wx:if="{{ basicInfo.ageGroup }}">
+          <text class="info-label">年龄</text>
+          <text class="info-value">{{ basicInfo.ageGroup }}</text>
+        </view>
+        <view class="info-item" wx:if="{{ basicInfo.smoking }}">
+          <text class="info-label">吸烟</text>
+          <text class="info-value">{{ basicInfo.smoking }}</text>
+        </view>
+        <view class="info-item" wx:if="{{ basicInfo.drinking }}">
+          <text class="info-label">饮酒</text>
+          <text class="info-value">{{ basicInfo.drinking }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Top3 维度 -->
+    <view class="section">
+      <text class="section-title">📊 风险维度 TOP 3</text>
+      <view class="dim-list">
+        <view class="dim-item" wx:for="{{ topFactors }}" wx:key="id">
+          <view class="dim-rank">{{ index + 1 }}</view>
+          <view class="dim-content">
+            <view class="dim-bar-header">
+              <text class="dim-name">{{ item.name }}</text>
+              <text class="dim-score" style="color: {{ item.color }}">{{ item.score }}</text>
+            </view>
+            <view class="dim-track">
+              <view class="dim-fill" style="width: {{ item.score }}%; background: {{ item.color }}"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 建议原则 -->
+    <view class="section">
+      <text class="section-title">💡 改善原则</text>
+      <view class="principle-card" wx:for="{{ principles }}" wx:key="id">
+        <view class="principle-header">
+          <text class="p-icon">{{ item.icon }}</text>
+          <text class="p-title">{{ item.title }}</text>
+        </view>
+        <text class="p-content">{{ item.content }}</text>
+      </view>
+    </view>
+
+    <!-- 行动清单 -->
+    <view class="section">
+      <text class="section-title">✅ 行动清单</text>
+      <view class="action-group">
+        <text class="ag-label">今天开始</text>
+        <view class="action-item" wx:for="{{ actionList.today }}" wx:key="text">
+          <text class="a-icon">{{ item.icon }}</text>
+          <text class="a-text">{{ item.text }}</text>
+        </view>
+      </view>
+      <view class="action-group">
+        <text class="ag-label">本周计划</text>
+        <view class="action-item" wx:for="{{ actionList.thisWeek }}" wx:key="text">
+          <text class="a-icon">{{ item.icon }}</text>
+          <text class="a-text">{{ item.text }}</text>
+        </view>
+      </view>
+      <view class="action-group">
+        <text class="ag-label">下次复评</text>
+        <view class="action-item" wx:for="{{ actionList.nextAssess }}" wx:key="text">
+          <text class="a-icon">{{ item.icon }}</text>
+          <text class="a-text">{{ item.text }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 红旗提示 -->
+    <view class="section" wx:if="{{ redFlags.length > 0 }}">
+      <view class="redflag-card">
+        <text class="rf-title">🚨 注意症状</text>
+        <view class="rf-item" wx:for="{{ redFlags }}" wx:key="*this">
+          <text class="rf-dot">•</text>
+          <text class="rf-text">{{ item }}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 60rpx;"></view>
+  </view>
+</scroll-view>

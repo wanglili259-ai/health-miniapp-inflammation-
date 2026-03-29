@@ -1,0 +1,84 @@
+<scroll-view class="container" scroll-y>
+  <!-- Logo -->
+  <view class="header">
+    <view class="logo-box">
+      <text class="logo-emoji">🔬</text>
+    </view>
+    <text class="app-name">炎症风险自测</text>
+    <text class="app-ver">版本 1.0.0</text>
+  </view>
+
+  <!-- 应用介绍 -->
+  <view class="section">
+    <text class="section-title">关于应用</text>
+    <view class="content-card">
+      <text class="content-text">「炎症风险自测」是一款帮助用户了解自身慢性炎症风险水平的健康教育工具。通过多维度症状自评、生活方式问卷，结合循证医学知识，生成个性化的慢性炎症风险指数（CIRI）评分和改善建议。</text>
+      <text class="content-text mt">本应用适合关注自身健康的成年人（18岁以上）作为日常健康管理的参考工具，建议每1-3个月进行一次评估，追踪健康趋势变化。</text>
+    </view>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="section">
+    <text class="section-title">⚠️ 免责声明</text>
+    <view class="content-card content-card--warn">
+      <view class="disclaimer-item">
+        <text class="di-title">非医疗诊断</text>
+        <text class="di-text">本测评工具不能替代医疗诊断。评估结果仅反映自报症状和生活习惯，不等同于临床检查结论。</text>
+      </view>
+      <view class="disclaimer-item">
+        <text class="di-title">建议就医情形</text>
+        <text class="di-text">若出现以下情况，请立即就医：持续不明原因发热超过3天、便血或黑便、胸痛持续不缓解、呼吸困难、短期明显消瘦、持续严重情绪低落或有自伤想法。</text>
+      </view>
+      <view class="disclaimer-item">
+        <text class="di-title">信息局限性</text>
+        <text class="di-text">本工具基于已发表的流行病学研究和循证医学建议，但医学知识持续更新，建议结合最新医学指南和专业医生意见做决策。</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 隐私政策 -->
+  <view class="section">
+    <text class="section-title">🔒 隐私政策</text>
+    <view class="content-card">
+      <view class="privacy-item">
+        <text class="pi-title">数据收集范围</text>
+        <text class="pi-text">仅收集您主动填写的问卷数据和微信手机号（登录时）。不收集位置、通讯录等敏感信息。</text>
+      </view>
+      <view class="privacy-item">
+        <text class="pi-title">数据存储</text>
+        <text class="pi-text">数据存储于微信云开发服务，采用行级数据隔离，仅您本人可查看自己的数据。</text>
+      </view>
+      <view class="privacy-item">
+        <text class="pi-title">数据使用</text>
+        <text class="pi-text">您的数据仅用于生成个人评估结果，不用于商业推广，不与第三方共享。</text>
+      </view>
+      <view class="privacy-item">
+        <text class="pi-title">数据删除</text>
+        <text class="pi-text">您可以随时通过下方「删除我的数据」按钮永久删除所有个人数据。</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 红旗症状速查 -->
+  <view class="section">
+    <text class="section-title">🚨 红旗症状速查</text>
+    <view class="content-card content-card--danger">
+      <text class="rf-intro">以下症状若出现，建议立即就医，不要依赖本测评结果：</text>
+      <view class="rf-list">
+        <view class="rf-item" wx:for="{{ redFlagList }}" wx:key="*this">
+          <text class="rf-dot">⚠️</text>
+          <text class="rf-text">{{ item }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作区 -->
+  <view class="actions-section">
+    <button class="btn-danger-outline" bindtap="confirmDeleteData">
+      🗑️ 删除我的所有数据
+    </button>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</scroll-view>

@@ -1,0 +1,131 @@
+<scroll-view class="container" scroll-y>
+  <!-- 评分展示区 -->
+  <view class="score-section">
+    <view class="score-bg-glow" style="background: radial-gradient(circle, {{ levelColor }}22 0%, transparent 65%)"></view>
+    <text class="score-date">{{ dateStr }}</text>
+    <view class="score-ring">
+      <text class="score-num" style="color: {{ levelColor }}">{{ totalScore }}</text>
+      <text class="score-unit">/100</text>
+    </view>
+    <view class="level-badge" style="background: {{ levelColor }}22; border-color: {{ levelColor }}44">
+      <text style="color: {{ levelColor }}">{{ levelText }}</text>
+    </view>
+    <text class="score-desc">{{ levelDesc }}</text>
+    <view class="completeness-row" wx:if="{{ incomplete }}">
+      <text class="completeness-warn">⚠️ 信息不完整（{{ completeness }}%），结果仅供参考</text>
+    </view>
+  </view>
+
+  <!-- 红旗症状提示 -->
+  <view class="redflag-section" wx:if="{{ redFlags.length > 0 }}">
+    <view class="redflag-card">
+      <text class="redflag-title">🚨 请注意以下症状</text>
+      <view class="redflag-list">
+        <view class="redflag-item" wx:for="{{ redFlags }}" wx:key="*this">
+          <text class="redflag-dot">•</text>
+          <text class="redflag-text">{{ item }}</text>
+        </view>
+      </view>
+      <text class="redflag-note">以上症状若持续存在，建议及时就医，勿以本测评替代医疗诊断。</text>
+    </view>
+  </view>
+
+  <!-- Top3 维度 -->
+  <view class="section-wrap">
+    <text class="section-title">📊 主要风险维度 TOP 3</text>
+    <view class="dim-list">
+      <view class="dim-item" wx:for="{{ topFactors }}" wx:key="id">
+        <view class="dim-rank">{{ index + 1 }}</view>
+        <view class="dim-content">
+          <view class="dim-bar-header">
+            <text class="dim-name">{{ item.name }}</text>
+            <text class="dim-score" style="color: {{ item.color }}">{{ item.score }}</text>
+          </view>
+          <view class="dim-track">
+            <view class="dim-fill" style="width: {{ item.score }}%; background: {{ item.color }}"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 5条原则 -->
+  <view class="section-wrap">
+    <text class="section-title">💡 改善原则</text>
+    <view class="principle-list">
+      <view class="principle-card" wx:for="{{ principles }}" wx:key="id">
+        <view class="principle-header">
+          <text class="principle-icon">{{ item.icon }}</text>
+          <text class="principle-title">{{ item.title }}</text>
+        </view>
+        <text class="principle-content">{{ item.content }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 行动清单 -->
+  <view class="section-wrap">
+    <text class="section-title">✅ 行动清单</text>
+
+    <view class="action-group">
+      <text class="action-group-label">今天开始</text>
+      <view class="action-item" wx:for="{{ actionList.today }}" wx:key="text">
+        <text class="action-icon">{{ item.icon }}</text>
+        <text class="action-text">{{ item.text }}</text>
+      </view>
+    </view>
+
+    <view class="action-group">
+      <text class="action-group-label">本周计划</text>
+      <view class="action-item" wx:for="{{ actionList.thisWeek }}" wx:key="text">
+        <text class="action-icon">{{ item.icon }}</text>
+        <text class="action-text">{{ item.text }}</text>
+      </view>
+    </view>
+
+    <view class="action-group">
+      <text class="action-group-label">下次复评</text>
+      <view class="action-item" wx:for="{{ actionList.nextAssess }}" wx:key="text">
+        <text class="action-icon">{{ item.icon }}</text>
+        <text class="action-text">{{ item.text }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 营养素建议 -->
+  <view class="section-wrap">
+    <text class="section-title">🧪 关键营养素</text>
+    <view class="nutrition-card" wx:if="{{ detailAdvice.nutrition.warning }}">
+      <text class="nutrition-warning">⚠️ {{ detailAdvice.nutrition.warning }}</text>
+    </view>
+    <view class="nutrition-item" wx:for="{{ detailAdvice.nutrition.items }}" wx:key="name">
+      <text class="nutrition-name">{{ item.name }}</text>
+      <text class="nutrition-food">食物来源：{{ item.food }}</text>
+      <text class="nutrition-note">{{ item.note }}</text>
+    </view>
+  </view>
+
+  <!-- 保存到云端 -->
+  <view class="save-section">
+    <button
+      class="btn-save {{ saved ? 'btn-save--done' : '' }}"
+      bindtap="saveToCloud"
+      wx:if="{{ !saved }}"
+      disabled="{{ saving }}"
+    >
+      <text>{{ saving ? '保存中...' : '☁️ 保存到云端' }}</text>
+    </button>
+    <view class="saved-tip" wx:else>
+      <text class="saved-text">✓ 已保存到云端</text>
+    </view>
+
+    <button class="btn-retake" bindtap="retake">重新测评</button>
+    <button class="btn-home" bindtap="goHome">返回首页</button>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer-wrap">
+    <text class="disclaimer-title">免责声明</text>
+    <text class="disclaimer-text">本测评工具仅用于健康教育和自我认知，不构成医疗诊断、治疗建议或处方。所有建议仅供参考，个体情况存在差异。如有任何健康疑虑或症状，请及时咨询有资质的医疗卫生专业人员。</text>
+  </view>
+</scroll-view>

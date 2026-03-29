@@ -1,0 +1,149 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx 48rpx;
+  border-bottom: 1rpx solid var(--border);
+}
+
+.logo-box {
+  width: 100rpx;
+  height: 100rpx;
+  background: var(--bg-elevated);
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  border: 1rpx solid var(--border-light);
+}
+
+.logo-emoji { font-size: 52rpx; }
+
+.app-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8rpx;
+}
+
+.app-ver {
+  font-size: 22rpx;
+  color: var(--text-muted);
+}
+
+.section {
+  padding: 32rpx 32rpx 16rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.content-card {
+  background: var(--bg-card);
+  border-radius: 16rpx;
+  padding: 28rpx;
+  border: 1rpx solid var(--border);
+}
+
+.content-card--warn {
+  border-color: rgba(245, 166, 35, 0.2);
+  background: rgba(245, 166, 35, 0.04);
+}
+
+.content-card--danger {
+  border-color: rgba(229, 83, 75, 0.2);
+  background: rgba(229, 83, 75, 0.04);
+}
+
+.content-text {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.mt { margin-top: 20rpx; }
+
+.disclaimer-item,
+.privacy-item {
+  margin-bottom: 24rpx;
+}
+
+.disclaimer-item:last-child,
+.privacy-item:last-child {
+  margin-bottom: 0;
+}
+
+.di-title,
+.pi-title {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8rpx;
+}
+
+.di-text,
+.pi-text {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.rf-intro {
+  display: block;
+  font-size: 24rpx;
+  color: var(--accent-danger);
+  margin-bottom: 16rpx;
+  line-height: 1.6;
+}
+
+.rf-list { }
+
+.rf-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.rf-dot {
+  font-size: 22rpx;
+  flex-shrink: 0;
+  margin-top: 2rpx;
+}
+
+.rf-text {
+  font-size: 24rpx;
+  color: var(--text-primary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.actions-section {
+  padding: 24rpx 32rpx;
+}
+
+.btn-danger-outline {
+  width: 100%;
+  height: 88rpx;
+  background: transparent;
+  border: 1rpx solid var(--accent-danger);
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  color: var(--accent-danger);
+}
+
+.btn-danger-outline::after { border: none; }
