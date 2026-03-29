@@ -1,0 +1,39 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+
+  <!-- Hero banner -->
+  <view class="hero-card">
+    <view class="hero-icon-emoji">🩻</view>
+    <view class="hero-title">炎症风险自测</view>
+    <view class="hero-subtitle">通过 13 道问题，快速了解您的身体炎症风险等级，获取个性化健康建议。</view>
+  </view>
+
+  <!-- Feature list -->
+  <view class="card feature-list">
+    <view class="section-title">评估内容</view>
+    <view class="feature-item" wx:for="{{features}}" wx:key="index">
+      <view class="feature-icon-wrap" style="background:{{item.bg}}">
+        <text class="feature-icon">{{item.icon}}</text>
+      </view>
+      <view class="feature-info">
+        <view class="feature-name">{{item.name}}</view>
+        <view class="feature-desc text-muted">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Disclaimer -->
+  <view class="disclaimer card">
+    <text class="disclaimer-icon">ℹ️</text>
+    <text class="disclaimer-text">本评估仅供健康参考，不能替代专业医疗诊断。如有身体不适，请及时就医。</text>
+  </view>
+
+  <!-- Start button -->
+  <button class="btn-primary start-btn" bindtap="onStart">开始评估</button>
+
+  <!-- Previous result shortcut -->
+  <view wx:if="{{hasHistory}}" class="history-hint text-center" bindtap="onViewHistory">
+    <text>查看上次评估结果 ›</text>
+  </view>
+
+</view>
