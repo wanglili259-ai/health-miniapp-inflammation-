@@ -1,0 +1,60 @@
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading-wrap" wx:if="{{ loading }}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{ list.length === 0 }}">
+    <text class="empty-icon">📋</text>
+    <text class="empty-title">还没有评估记录</text>
+    <text class="empty-desc">完成第一次测评后，记录将显示在这里</text>
+    <button class="btn-start" bindtap="startAssessment">立即开始测评</button>
+  </view>
+
+  <!-- 历史列表 -->
+  <scroll-view class="list-scroll" scroll-y wx:else>
+    <view class="list-header">
+      <text class="list-total">共 {{ list.length }} 条记录</text>
+      <text class="list-source">{{ hasCloud ? '含云端数据' : '本地数据' }}</text>
+    </view>
+
+    <view
+      class="record-card"
+      wx:for="{{ list }}"
+      wx:key="_id"
+      bindtap="viewDetail"
+      data-id="{{ item._id }}"
+      data-source="{{ item.source }}"
+    >
+      <view class="record-left">
+        <view class="record-score-ring" style="border-color: {{ item.levelColor }}">
+          <text class="record-score" style="color: {{ item.levelColor }}">{{ item.totalScore }}</text>
+        </view>
+      </view>
+      <view class="record-body">
+        <view class="record-top-row">
+          <text class="record-date">{{ item.dateStr }}</text>
+          <view class="record-badge" style="background: {{ item.levelColor }}22; border-color: {{ item.levelColor }}44">
+            <text style="color: {{ item.levelColor }}">{{ item.levelText }}</text>
+          </view>
+        </view>
+        <view class="record-dims" wx:if="{{ item.topFactors && item.topFactors.length > 0 }}">
+          <text class="dim-tag" wx:for="{{ item.topFactors }}" wx:key="id" wx:for-item="dim">
+            {{ dim.name }}
+          </text>
+        </view>
+        <view class="record-bottom-row">
+          <text class="record-completeness" wx:if="{{ item.incomplete }}">⚠️ 信息不完整</text>
+          <text class="record-cloud" wx:if="{{ item.savedToCloud }}">☁️ 已同步</text>
+        </view>
+      </view>
+      <text class="record-arrow">›</text>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{ hasMore }}" bindtap="loadMore">
+      <text class="load-more-text">加载更多</text>
+    </view>
+  </scroll-view>
+</view>

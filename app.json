@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/auth/auth",
+    "pages/questionnaire/index",
+    "pages/result/index",
+    "pages/history/index",
+    "pages/history/detail",
+    "pages/about/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0B0F14",
+    "navigationBarTitleText": "炎症风险自测",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0B0F14",
+    "backgroundColorTop": "#0B0F14",
+    "backgroundColorBottom": "#0B0F14"
+  },
+  "cloud": true,
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2"
+}

@@ -1,0 +1,178 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.loading-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: var(--text-muted);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 32rpx;
+}
+
+.empty-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 48rpx;
+}
+
+.btn-start {
+  width: 400rpx;
+  height: 88rpx;
+  background: var(--accent);
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+}
+
+.btn-start::after { border: none; }
+
+.list-scroll {
+  height: 100vh;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 32rpx 16rpx;
+}
+
+.list-total {
+  font-size: 24rpx;
+  color: var(--text-muted);
+}
+
+.list-source {
+  font-size: 22rpx;
+  color: var(--text-muted);
+}
+
+.record-card {
+  display: flex;
+  align-items: center;
+  margin: 0 32rpx 16rpx;
+  background: var(--bg-card);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  border: 1rpx solid var(--border);
+  gap: 20rpx;
+}
+
+.record-left {
+  flex-shrink: 0;
+}
+
+.record-score-ring {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  border: 3rpx solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.record-score {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.record-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.record-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.record-date {
+  font-size: 24rpx;
+  color: var(--text-muted);
+}
+
+.record-badge {
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+  border: 1rpx solid;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.record-dims {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.dim-tag {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  padding: 4rpx 14rpx;
+  border-radius: 100rpx;
+}
+
+.record-bottom-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.record-completeness {
+  font-size: 20rpx;
+  color: var(--accent-warn);
+}
+
+.record-cloud {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+
+.record-arrow {
+  font-size: 36rpx;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  padding: 32rpx;
+}
+
+.load-more-text {
+  font-size: 26rpx;
+  color: var(--accent);
+}

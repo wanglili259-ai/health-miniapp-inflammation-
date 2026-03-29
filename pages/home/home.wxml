@@ -1,0 +1,75 @@
+<scroll-view class="container" scroll-y>
+  <!-- Header -->
+  <view class="header">
+    <view class="header-glow"></view>
+    <view class="logo-wrap">
+      <text class="logo-icon">🔬</text>
+    </view>
+    <text class="app-title">炎症风险自测</text>
+    <text class="app-subtitle">慢性炎症风险指数评估</text>
+    <text class="app-version">基于多维度症状与生活方式分析</text>
+  </view>
+
+  <!-- 登录状态 -->
+  <view class="login-status-bar" wx:if="{{ isLoggedIn }}">
+    <text class="login-icon">✓</text>
+    <text class="login-text">已登录 · {{ phoneDisplay }}</text>
+  </view>
+  <view class="login-status-bar login-status-bar--guest" wx:else>
+    <text class="login-icon">👤</text>
+    <text class="login-text">未登录，结果将仅保存在本地</text>
+  </view>
+
+  <!-- 主操作区 -->
+  <view class="actions-wrap">
+    <button class="btn-start" bindtap="startAssessment">
+      <text class="btn-start-icon">▶</text>
+      <text>开始自测</text>
+    </button>
+
+    <view class="action-row">
+      <button class="btn-card" bindtap="goHistory">
+        <text class="btn-card-icon">📋</text>
+        <text class="btn-card-text">历史记录</text>
+        <text class="btn-card-count" wx:if="{{ historyCount > 0 }}">{{ historyCount }}</text>
+      </button>
+      <button class="btn-card" bindtap="goAbout">
+        <text class="btn-card-icon">ℹ️</text>
+        <text class="btn-card-text">关于应用</text>
+      </button>
+    </view>
+
+    <button class="btn-login" bindtap="goLogin" wx:if="{{ !isLoggedIn }}">
+      微信手机号登录以同步数据
+    </button>
+  </view>
+
+  <!-- 简介卡片 -->
+  <view class="intro-section">
+    <view class="intro-card">
+      <text class="intro-title">📊 什么是慢性炎症风险指数？</text>
+      <text class="intro-desc">慢性低度炎症是多种慢性病（心血管疾病、糖尿病、代谢综合征等）的共同土壤。本测评通过分析症状表现、生活方式与心理健康，生成综合风险评分，帮助你了解当前炎症负荷并获取个性化改善建议。</text>
+    </view>
+
+    <view class="step-cards">
+      <view class="step-card">
+        <text class="step-num">01</text>
+        <text class="step-text">填写基础信息</text>
+      </view>
+      <view class="step-divider">→</view>
+      <view class="step-card">
+        <text class="step-num">02</text>
+        <text class="step-text">症状自评</text>
+      </view>
+      <view class="step-divider">→</view>
+      <view class="step-card">
+        <text class="step-num">03</text>
+        <text class="step-text">生活方式</text>
+      </view>
+    </view>
+
+    <view class="disclaimer-card">
+      <text class="disclaimer-text">⚠️ 本测评仅供健康参考，不能替代专业医疗诊断。如有不适症状，请及时就医。</text>
+    </view>
+  </view>
+</scroll-view>

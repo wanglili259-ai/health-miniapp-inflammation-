@@ -1,0 +1,189 @@
+<view class="container">
+  <!-- 进度条 -->
+  <view class="progress-section">
+    <view class="progress-header">
+      <text class="progress-label">步骤 {{ currentStep + 1 }} / 3</text>
+      <text class="progress-pct">{{ progressPct }}%</text>
+    </view>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{ progressPct }}%"></view>
+    </view>
+    <view class="step-labels">
+      <text class="step-lbl {{ currentStep === 0 ? 'step-lbl--active' : '' }}">基础信息</text>
+      <text class="step-lbl {{ currentStep === 1 ? 'step-lbl--active' : '' }}">症状评估</text>
+      <text class="step-lbl {{ currentStep === 2 ? 'step-lbl--active' : '' }}">生活方式</text>
+    </view>
+  </view>
+
+  <!-- ════════════════════════════════════════ -->
+  <!--  STEP 0: 基础信息                        -->
+  <!-- ════════════════════════════════════════ -->
+  <scroll-view class="step-scroll" scroll-y wx:if="{{ currentStep === 0 }}">
+    <view class="step-content">
+      <view class="step-title-wrap">
+        <text class="step-title">📋 基础信息</text>
+        <text class="step-desc">帮助我们更精准地评估您的风险</text>
+      </view>
+
+      <view class="card" wx:for="{{ basicFields }}" wx:key="id">
+        <text class="field-label {{ item.required ? 'field-label--required' : '' }}">{{ item.label }}</text>
+
+        <!-- Radio -->
+        <view class="option-group" wx:if="{{ item.type === 'radio' }}">
+          <view
+            class="option-chip {{ basicInfo[item.id] === opt ? 'selected' : '' }}"
+            wx:for="{{ item.options }}" wx:for-item="opt" wx:key="*this"
+            bindtap="onSelectRadio"
+            data-field="{{ item.id }}"
+            data-value="{{ opt }}"
+          >{{ opt }}</view>
+        </view>
+
+        <!-- Number input -->
+        <view class="num-input-wrap" wx:if="{{ item.type === 'number' }}">
+          <input
+            class="num-input"
+            type="digit"
+            placeholder="{{ item.placeholder }}"
+            value="{{ basicInfo[item.id] }}"
+            data-field="{{ item.id }}"
+            bindinput="onNumInput"
+            placeholder-style="color: var(--text-muted)"
+          />
+          <text class="num-unit">{{ item.id === 'height' ? 'cm' : item.id === 'weight' ? 'kg' : 'cm' }}</text>
+        </view>
+
+        <!-- Checkbox -->
+        <view class="option-group" wx:if="{{ item.type === 'checkbox' }}">
+          <view
+            class="option-chip {{ basicInfoMulti[item.id] && basicInfoMulti[item.id][opt] ? 'selected' : '' }}"
+            wx:for="{{ item.options }}" wx:for-item="opt" wx:key="*this"
+            bindtap="onSelectCheckbox"
+            data-field="{{ item.id }}"
+            data-value="{{ opt }}"
+            data-exclusive="{{ item.exclusive }}"
+          >{{ opt }}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- ════════════════════════════════════════ -->
+  <!--  STEP 1: 症状评估                        -->
+  <!-- ════════════════════════════════════════ -->
+  <scroll-view class="step-scroll" scroll-y wx:if="{{ currentStep === 1 }}">
+    <view class="step-content">
+      <view class="step-title-wrap">
+        <text class="step-title">🩺 症状自评</text>
+        <text class="step-desc">请根据近1个月的感受，选择症状出现的频率</text>
+      </view>
+
+      <!-- 频率说明 -->
+      <view class="freq-legend">
+        <view class="freq-legend-item" wx:for="{{ freqLabels }}" wx:key="*this">
+          <view class="freq-dot freq-dot-{{ index }}"></view>
+          <text class="freq-legend-text">{{ item }}</text>
+        </view>
+      </view>
+
+      <!-- 症状分组 -->
+      <view wx:for="{{ symptomGroups }}" wx:for-item="group" wx:key="id">
+        <view class="group-header">
+          <text class="group-icon">{{ group.icon }}</text>
+          <text class="group-title">{{ group.title }}</text>
+          <text class="group-count">{{ symptomAnsweredCount[group.id] || 0 }}/{{ group.questions.length }}</text>
+        </view>
+
+        <view class="card question-card" wx:for="{{ group.questions }}" wx:for-item="q" wx:key="id">
+          <view class="q-text-row">
+            <text class="q-text">{{ q.text }}</text>
+            <view class="red-flag-badge" wx:if="{{ q.redFlag }}">
+              <text>⚠️ 重要</text>
+            </view>
+          </view>
+          <view class="freq-scale">
+            <view
+              class="freq-btn {{ symptomAnswers[q.id] === 0 ? 'active-0' : '' }}"
+              bindtap="onSymptomSelect"
+              data-qid="{{ q.id }}"
+              data-val="0"
+              data-gid="{{ group.id }}"
+            >几乎没有</view>
+            <view
+              class="freq-btn {{ symptomAnswers[q.id] === 1 ? 'active-1' : '' }}"
+              bindtap="onSymptomSelect"
+              data-qid="{{ q.id }}"
+              data-val="1"
+              data-gid="{{ group.id }}"
+            >偶尔</view>
+            <view
+              class="freq-btn {{ symptomAnswers[q.id] === 2 ? 'active-2' : '' }}"
+              bindtap="onSymptomSelect"
+              data-qid="{{ q.id }}"
+              data-val="2"
+              data-gid="{{ group.id }}"
+            >经常</view>
+            <view
+              class="freq-btn {{ symptomAnswers[q.id] === 3 ? 'active-3' : '' }}"
+              bindtap="onSymptomSelect"
+              data-qid="{{ q.id }}"
+              data-val="3"
+              data-gid="{{ group.id }}"
+            >频繁</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 跳过提示 -->
+      <view class="skip-tip">
+        <text class="skip-tip-text">💡 可以跳过不确定的题目，仍会生成评估结果</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- ════════════════════════════════════════ -->
+  <!--  STEP 2: 生活方式与心理                  -->
+  <!-- ════════════════════════════════════════ -->
+  <scroll-view class="step-scroll" scroll-y wx:if="{{ currentStep === 2 }}">
+    <view class="step-content">
+      <view class="step-title-wrap">
+        <text class="step-title">🧬 生活方式与心理</text>
+        <text class="step-desc">日常习惯对慢性炎症有深远影响</text>
+      </view>
+
+      <view class="card" wx:for="{{ lifestyleQuestions }}" wx:key="id">
+        <text class="field-label">{{ item.text }}</text>
+        <view class="option-group ls-options">
+          <view
+            class="option-chip ls-chip {{ lifestyleAnswers[item.id] === idx ? 'selected' : '' }}"
+            wx:for="{{ item.options }}" wx:for-item="opt" wx:for-index="idx" wx:key="*this"
+            bindtap="onLifestyleSelect"
+            data-qid="{{ item.id }}"
+            data-idx="{{ idx }}"
+          >{{ opt }}</view>
+        </view>
+      </view>
+
+      <view class="skip-tip">
+        <text class="skip-tip-text">💡 如实填写有助于获得更精准的分析结果</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- ════════════════════════════════════════ -->
+  <!--  底部按钮区                              -->
+  <!-- ════════════════════════════════════════ -->
+  <view class="bottom-btns">
+    <button class="btn-prev" wx:if="{{ currentStep > 0 }}" bindtap="prevStep">← 上一步</button>
+    <view style="flex: {{ currentStep === 0 ? 0 : 1 }}; width: {{ currentStep === 0 ? 0 : '20rpx' }}"></view>
+    <button
+      class="btn-next {{ currentStep === 2 ? 'btn-next--finish' : '' }}"
+      bindtap="nextStep"
+      disabled="{{ submitting }}"
+    >
+      <text wx:if="{{ currentStep < 2 }}">下一步 →</text>
+      <text wx:elif="{{ submitting }}">计算中...</text>
+      <text wx:else>完成评估 ✓</text>
+    </button>
+  </view>
+</view>

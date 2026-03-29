@@ -1,0 +1,298 @@
+/* Dark Theme Design Tokens */
+page {
+  --bg-primary: #0B0F14;
+  --bg-card: #121824;
+  --bg-elevated: #1A2333;
+  --text-primary: #E6EDF3;
+  --text-secondary: #9AA4B2;
+  --text-muted: #6B7485;
+  --accent: #4CC38A;
+  --accent-warn: #F5A623;
+  --accent-danger: #E5534B;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.4);
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 32rpx;
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 48rpx;
+}
+
+/* Base styles shared across pages */
+.page-scroll {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.page-padding {
+  padding: 0 32rpx;
+}
+
+/* Section label */
+.section-label {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+/* Icon + text row */
+.row-icon-text {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+/* Pill badge */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 20rpx;
+  border-radius: 100rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.pill-green {
+  background: rgba(76, 195, 138, 0.15);
+  color: var(--accent);
+}
+
+.pill-orange {
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--accent-warn);
+}
+
+.pill-red {
+  background: rgba(229, 83, 75, 0.15);
+  color: var(--accent-danger);
+}
+
+/* Progress bar */
+.progress-track {
+  width: 100%;
+  height: 8rpx;
+  background: var(--border);
+  border-radius: 100rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100rpx;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+/* List item */
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid var(--border);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item-content {
+  flex: 1;
+}
+
+.list-item-arrow {
+  color: var(--text-muted);
+  font-size: 28rpx;
+  margin-left: 16rpx;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+  color: var(--text-muted);
+}
+
+.empty-state-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-state-text {
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Form elements */
+.form-field {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.form-label-required::after {
+  content: " *";
+  color: var(--accent-danger);
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  background: var(--bg-elevated);
+  border: 1rpx solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0 24rpx;
+  color: var(--text-primary);
+  font-size: 28rpx;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+}
+
+/* Option group (radio / checkbox) */
+.option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.option-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 28rpx;
+  border-radius: 100rpx;
+  border: 1rpx solid var(--border-light);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 26rpx;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-chip.selected {
+  border-color: var(--accent);
+  background: rgba(76, 195, 138, 0.12);
+  color: var(--accent);
+}
+
+/* Frequency scale for symptoms */
+.freq-scale {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.freq-btn {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12rpx;
+  border: 1rpx solid var(--border-light);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 22rpx;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  line-height: 1.3;
+  padding: 0 4rpx;
+}
+
+.freq-btn.active-0 {
+  border-color: var(--accent);
+  background: rgba(76, 195, 138, 0.1);
+  color: var(--accent);
+}
+
+.freq-btn.active-1 {
+  border-color: #63a8d3;
+  background: rgba(99, 168, 211, 0.1);
+  color: #63a8d3;
+}
+
+.freq-btn.active-2 {
+  border-color: var(--accent-warn);
+  background: rgba(245, 166, 35, 0.1);
+  color: var(--accent-warn);
+}
+
+.freq-btn.active-3 {
+  border-color: var(--accent-danger);
+  background: rgba(229, 83, 75, 0.1);
+  color: var(--accent-danger);
+}
+
+/* Score display ring */
+.score-ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.score-number {
+  font-size: 96rpx;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -4rpx;
+}
+
+.score-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-top: 8rpx;
+}
+
+/* Dimension bar */
+.dim-bar-wrap {
+  margin-bottom: 24rpx;
+}
+
+.dim-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.dim-bar-name {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.dim-bar-score {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.dim-bar-track {
+  height: 10rpx;
+  background: var(--border);
+  border-radius: 100rpx;
+  overflow: hidden;
+}
+
+.dim-bar-fill {
+  height: 100%;
+  border-radius: 100rpx;
+  transition: width 0.5s ease;
+}
