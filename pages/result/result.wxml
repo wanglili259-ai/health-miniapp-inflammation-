@@ -1,0 +1,55 @@
+<!-- pages/result/result.wxml -->
+<view class="container">
+
+  <!-- Score card -->
+  <view class="score-card" style="border-color:{{result.color}}">
+    <view class="score-label">您的炎症风险评分</view>
+    <view class="score-ring-wrap">
+      <view class="score-ring" style="border-color:{{result.color}}">
+        <view class="score-number" style="color:{{result.color}}">{{result.score}}</view>
+        <view class="score-max">/ {{result.maxScore}}</view>
+      </view>
+    </view>
+    <view class="level-badge" style="background:{{result.color}}">{{result.label}}</view>
+    <view class="score-pct" style="color:{{result.color}}">风险指数 {{result.percentage}}%</view>
+  </view>
+
+  <!-- Description -->
+  <view class="card description-card">
+    <view class="section-title">评估说明</view>
+    <view class="description-text">{{result.description}}</view>
+  </view>
+
+  <!-- Tips -->
+  <view class="card tips-card">
+    <view class="section-title">个性化建议</view>
+    <view class="tip-item" wx:for="{{result.tips}}" wx:key="index">
+      <view class="tip-bullet" style="background:{{result.color}}">{{index + 1}}</view>
+      <text class="tip-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Answer summary -->
+  <view class="card summary-card">
+    <view class="section-title">问卷信息</view>
+    <view class="summary-row">
+      <text class="summary-key">回答问题</text>
+      <text class="summary-val">{{result.answeredCount}} / {{result.totalCount}} 题</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-key">风险等级</text>
+      <text class="summary-val" style="color:{{result.color}}; font-weight:700">{{result.label}}</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-key">评估时间</text>
+      <text class="summary-val">{{evalTime}}</text>
+    </view>
+  </view>
+
+  <!-- Action buttons -->
+  <view class="action-area">
+    <button class="btn-primary" bindtap="onRetake">重新评估</button>
+    <button class="btn-secondary" style="margin-top:20rpx" bindtap="onBackHome">返回首页</button>
+  </view>
+
+</view>
