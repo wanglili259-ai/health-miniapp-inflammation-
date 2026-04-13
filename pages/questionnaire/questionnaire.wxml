@@ -1,0 +1,55 @@
+<!-- pages/questionnaire/questionnaire.wxml -->
+<view class="container">
+
+  <!-- Progress bar -->
+  <view class="progress-wrap card">
+    <view class="progress-meta">
+      <text class="progress-label">完成进度</text>
+      <text class="progress-count">{{answeredCount}} / {{totalCount}}</text>
+    </view>
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width:{{progressPct}}%"></view>
+    </view>
+  </view>
+
+  <!-- Question groups -->
+  <block wx:for="{{groups}}" wx:key="group" wx:for-item="group">
+    <view class="group-header">{{group.group}}</view>
+
+    <block wx:for="{{group.questions}}" wx:key="id" wx:for-item="q">
+      <view class="card question-card {{answers[q.id] !== undefined ? 'answered' : ''}}">
+        <view class="question-text">
+          <text class="q-num">Q{{q.globalIndex}}</text>
+          <text>{{q.text}}</text>
+        </view>
+        <view class="options-wrap">
+          <view
+            class="option-item {{answers[q.id] === idx ? 'selected' : ''}}"
+            wx:for="{{q.options}}"
+            wx:key="index"
+            wx:for-index="idx"
+            wx:for-item="opt"
+            data-qid="{{q.id}}"
+            data-idx="{{idx}}"
+            bindtap="onSelectOption"
+          >
+            <view class="option-radio {{answers[q.id] === idx ? 'radio-active' : ''}}"></view>
+            <text class="option-label">{{opt.label}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <!-- Submit -->
+  <view class="submit-area">
+    <button
+      class="btn-primary submit-btn {{canSubmit ? '' : 'btn-disabled'}}"
+      bindtap="onSubmit"
+      disabled="{{!canSubmit}}"
+    >
+      {{canSubmit ? '查看评估结果' : '请回答所有问题（还剩 ' + (totalCount - answeredCount) + ' 题）'}}
+    </button>
+  </view>
+
+</view>

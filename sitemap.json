@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}
